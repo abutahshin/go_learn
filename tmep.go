@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	var tmp float64
@@ -9,8 +12,10 @@ func main() {
 	fmt.Scanln(&tmp)
 	fmt.Printf("Enter The Current Unit Of Temperature: ")
 	fmt.Scanln(&funit)
+	funit = strings.ToUpper(funit)
 	fmt.Printf("Enter The Unit Where You Want To Move: ")
 	fmt.Scanln(&tounit)
+	tounit = strings.ToUpper(tounit)
 	var ans float64
 	if funit == string('C') {
 		if tounit == string('F') {

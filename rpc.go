@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"slices"
 )
 
-func main() {
-	const rounds = 3
+func rpc(rounds int) (int, int) {
 	pcnt := 0
 	ccnt := 0
 	fmt.Println("Let's Play Rock,Paper,Scissors!You Have", rounds, "Rounds.")
@@ -24,6 +24,9 @@ func main() {
 		var playerchoice string
 		fmt.Println("Enter your choice:")
 		fmt.Scan(&playerchoice)
+		if !slices.Contains([]string{"Rock", "Paper", "Scissors"}, playerchoice) {
+			panic("Invalid choice:")
+		}
 		fmt.Println("Computer chose:", comchoice)
 		if playerchoice == comchoice {
 			fmt.Println("It's a tie!")
@@ -35,6 +38,11 @@ func main() {
 			ccnt++
 		}
 	}
+	return pcnt, ccnt
+}
+func main() {
+	const rounds = 3
+	pcnt, ccnt := rpc(rounds)
 	if pcnt == ccnt {
 		fmt.Println("After ", rounds, " Rounds", " Match Tie!")
 	} else if pcnt > ccnt {
